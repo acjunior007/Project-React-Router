@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthProvider";
+import { useAuth } from "../../context/AuthProvider";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -10,7 +10,12 @@ export default function Login() {
 
     function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
-        const successlogin = login(email, password);
+
+        // Simulate .NET API response
+        const fakeToken = "fake-jwt-token-from-api";
+        const role = email === "admin@example.com" ? "admin" : "user";
+
+        const successlogin = login(fakeToken, email, role);
         if (successlogin)   
             navigate("/dashboard");
 
